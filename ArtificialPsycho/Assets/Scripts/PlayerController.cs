@@ -5,11 +5,13 @@ namespace BloodLessStudio.ArtificialPsycho { //Namespace
     [RequireComponent(typeof(PlayerMotor))] //Require PlayerMotor Componement
     public class PlayerController : MonoBehaviour
     {
-        public float speed = 20f;
-        public float mouseSensitivity = 3f;
-
+        [Header("References")]
         [SerializeField]
         private PlayerMotor Motor;
+
+        [Header("Settings")]
+        public float speed = 20f;
+        public float mouseSensitivity = 3f;
 
         private Vector3 velocity;
         private Vector3 xRotation;
@@ -29,11 +31,13 @@ namespace BloodLessStudio.ArtificialPsycho { //Namespace
             float yRot = Input.GetAxisRaw("Mouse X");
             float xRot = Input.GetAxisRaw("Mouse Y");
 
-            yRotation = new Vector3(0, yRot, 0);
+            yRotation = new Vector3(0, yRot, 0) * mouseSensitivity;
             xRotation = new Vector3(xRot, 0, 0) * mouseSensitivity;
 
             Motor.SetCameraY(yRotation);
             Motor.SetCameraX(xRotation);
+
+            /*--------- Specific Movement Input (Keydown) ---------*/
         }
     }
 }
