@@ -9,21 +9,24 @@ public class PlayerMouvement : MonoBehaviour
     [Header("Player Settings")]
     public float playerHeight = 2f;
 
-    [Header("Movement")]
-    public float moveSpeed = 10f;
-    public float airSpeedRatio = 0.4f;
-    public float playerDrag = 6f;
-    public float airDrag = 2f;
-
     [Header("Groud Detection")]
     [SerializeField] LayerMask groundMask;
     public float groundDetectionRadius = 0.4f;
     public bool isGrounded;
 
+    [Header("Basics Movement")]
+    public float moveSpeed = 5f;
+    public float airSpeedRatio = 0.1f;
+    public float playerDrag = 6f;
+    public float airDrag = 0.5f;
+
+    [Header("Sprinting")]
+    [SerializeField] private KeyCode sprintKey = KeyCode.LeftShift;
+    public float runSpeedRatio = 2f;
+
     [Header("Jump")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
-    public float jumpForce = 5f;
-    
+    public float jumpForce = 8f;
 
     //Private Variables
     private Rigidbody rb;
@@ -59,8 +62,14 @@ public class PlayerMouvement : MonoBehaviour
         CheckGrounded();    //Check is the player is grounded or not
         ReadInput();        //Get input and set movement vector
         HandleDrag();       //Set player drag => (Le Drag est grossomodo la meme chose que la résistance de l'air. On est met ici pour adoucir le mouvement)
+        CheckRunning();
         CheckJump();        //Check is the player WANT and CAN jump => if yes, make the player jump.
-        CheckSlope();
+        CheckSlope();      
+    }
+
+    private void CheckGrounded()
+    {
+        isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1, 0), groundDetectionRadius, groundMask);
     }
 
     private void ReadInput()
@@ -70,17 +79,6 @@ public class PlayerMouvement : MonoBehaviour
         verticalMovement = Input.GetAxisRaw("Vertical");
 
         moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement; // Calculate the movement vector
-    }
-
-    private void CheckGrounded()
-    {
-        isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1, 0), groundDetectionRadius, groundMask);
-    }
-
-    private void CheckJump()
-    {
-        if (Input.GetKeyDown(jumpKey) && isGrounded)
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
     private void HandleDrag()
@@ -94,13 +92,38 @@ public class PlayerMouvement : MonoBehaviour
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);    
     }
 
+    private void CheckRunning()
+    {
+        if (Input.GetKey(sprintKey) && isGrounded)
+        {
+            moveDirection *= runSpeedRatio;
+            print("Player trying to run!");
+        }
+            
+    }
+
+    private void CheckJump()
+    {
+        if (Input.GetKeyDown(jumpKey) && isGrounded)
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+
     #endregion
 
     // FixedUpdate()
     #region FixedUpdate
     private void FixedUpdate()
     {
-        MovePlayer(); //Move the player according to the movement vector
+        HandleGravity();
+        MovePlayer(); //Move the player according to the movement vector        
+    }
+
+    private void HandleGravity()
+    {
+        if (isGrounded)
+            rb.useGravity = false;
+        else if (!isGrounded)
+            rb.useGravity = true;
     }
 
     private void MovePlayer()

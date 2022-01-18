@@ -39,8 +39,6 @@ public class PlayerCamera : MonoBehaviour
     private void Update()
     {
         ReadInput();
-        RotateCamera();
-        RotatePlayerBody();
     }
 
     private void ReadInput()
@@ -52,6 +50,13 @@ public class PlayerCamera : MonoBehaviour
         xRotation -= mouseY * sensitivityVertical * 0.1f;
 
         xRotation = Mathf.Clamp(xRotation, -clampingAngle, clampingAngle);
+    }
+
+    // FixedUpdate
+    private void FixedUpdate()
+    {
+        RotateCamera();
+        RotatePlayerBody();
     }
 
     private void RotateCamera()
