@@ -11,6 +11,7 @@ public class PlayerMouvement : MonoBehaviour
 
     [Header("Groud Detection")]
     [SerializeField] LayerMask groundMask;
+    [SerializeField] Transform groundCheck;
     public float groundDetectionRadius = 0.4f;
     public bool isGrounded;
 
@@ -22,7 +23,9 @@ public class PlayerMouvement : MonoBehaviour
 
     [Header("Sprinting")]
     [SerializeField] private KeyCode sprintKey = KeyCode.LeftShift;
-    public float runSpeedRatio = 2f;
+    public float walkSpeed = 5f;
+    public float runSpeed = 10f;
+    public float acceleration = 10f;
 
     [Header("Jump")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
@@ -38,15 +41,6 @@ public class PlayerMouvement : MonoBehaviour
     private Vector3 slopeMoveDirection;
 
     /*------ METHODS ------*/
-    private bool OnSlope()
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.5f))
-        {
-            if (slopeHit.normal != Vector3.up) return true;
-            return false;
-        }
-        return false;
-    }
 
     // Start()
     private void Start()
@@ -69,7 +63,7 @@ public class PlayerMouvement : MonoBehaviour
 
     private void CheckGrounded()
     {
-        isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1, 0), groundDetectionRadius, groundMask);
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDetectionRadius, groundMask);
     }
 
     private void ReadInput()
@@ -95,18 +89,31 @@ public class PlayerMouvement : MonoBehaviour
     private void CheckRunning()
     {
         if (Input.GetKey(sprintKey) && isGrounded)
-        {
-            moveDirection *= runSpeedRatio;
-            print("Player trying to run!");
-        }
-            
+            moveSpeed = Mathf.Lerp(moveSpeed, runSpeed, acceleration * Time.deltaTime);
+        else
+            moveSpeed = Mathf.Lerp(moveSpeed, walkSpeed, acceleration * Time.deltaTime);
+
     }
 
     private void CheckJump()
     {
         if (Input.GetKeyDown(jumpKey) && isGrounded)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); //Reset the UP/DOWN velocity of the player => Fix the bug where the jump would be shorter cause the player hadn't touch the groud yet.
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }
+            
     }
+
+    private bool OnSlope()
+        {
+            if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.5f))
+            {
+                if (slopeHit.normal != Vector3.up) return true;
+                return false;
+            }
+            return false;
+        }
 
     #endregion
 
@@ -114,8 +121,8 @@ public class PlayerMouvement : MonoBehaviour
     #region FixedUpdate
     private void FixedUpdate()
     {
-        HandleGravity();
-        MovePlayer(); //Move the player according to the movement vector        
+        HandleGravity();    //Disable gravity when the player is grouded => Optimization + bugfix sliding off slope
+        MovePlayer();   //Move the player according to the movement vector        
     }
 
     private void HandleGravity()
