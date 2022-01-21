@@ -24,7 +24,6 @@ public class PlayerCamera : MonoBehaviour
     private float yRotation;
 
     /*------ METHODS ------*/
-
     // Start()
     private void Start()
     {
