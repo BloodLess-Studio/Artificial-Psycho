@@ -18,7 +18,7 @@ MonoBehaviour:
   range: 500
   fireRate: 100
   bulletType: 3
-  currentAmmo: 1
+  currentAmmo: 0
   maxAmmo: 1
   reloadTime: 10
   isReloading: 0

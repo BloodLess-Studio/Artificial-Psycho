@@ -9,6 +9,9 @@ public class WeaponInputs : MonoBehaviour
     [SerializeField] private WeaponChanger _weaponChanger;
 
     [Header("Bindings")]
+    [SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
+    [SerializeField] private KeyCode reloadKey = KeyCode.R;
+    [SerializeField] private KeyCode scopeKey = KeyCode.Mouse1;
     [SerializeField] private KeyCode weapon1 = KeyCode.Alpha1;
     [SerializeField] private KeyCode weapon2 = KeyCode.Alpha2;
     [SerializeField] private KeyCode weapon3 = KeyCode.Alpha3;
@@ -16,8 +19,13 @@ public class WeaponInputs : MonoBehaviour
     [SerializeField] private KeyCode weapon5 = KeyCode.Alpha5;
     [SerializeField] private KeyCode weapon6 = KeyCode.Alpha6;
 
-    [Header("Weapon Index")]
+    [Header("Weapon Info")]
     public int weaponIndex = 0;
+    public bool isReloading;
+    public bool isScoping;
+
+    //Variables
+    private float timeSinceLastShot;
 
     /*------ METHODS ------*/
     //Awake()
@@ -30,7 +38,17 @@ public class WeaponInputs : MonoBehaviour
     #region Update()
     void Update()
     {
+        timeSinceLastShot += Time.deltaTime; //We capture the time
+
+        //Checking
         CheckSwapInput();
+        CheckShoot();
+        CheckReload();
+        
+        
+        Weapons _weapon = _weaponChanger.GetCurrentWeapon();
+        Transform muzzle = GetWeaponMuzzle();
+        Debug.DrawRay(muzzle.position, muzzle.forward * _weapon.range, Color.green);
     }
 
     private void CheckSwapInput()
@@ -62,6 +80,89 @@ public class WeaponInputs : MonoBehaviour
 
         if (weaponIndex != weaponIndexSave)
             _weaponChanger.ChangeWeapon(weaponIndex);
+    }
+
+    private void CheckShoot()
+    {
+        if (Input.GetKeyDown(shootKey))
+        {
+            Weapons _weapon = _weaponChanger.GetCurrentWeapon();
+            Transform muzzle = GetWeaponMuzzle();
+            if (CanShoot(_weapon))
+            {
+                if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, _weapon.range))
+                {
+                    Debug.Log(hitInfo.transform.name);
+
+                    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
+                    damageable?.TakeDamage(_weapon.damage);
+                }
+
+                UpdateAmmo(_weapon);
+                timeSinceLastShot = 0;
+                /*OnShootEffect()*/           //Call this function for visual/sound effects
+            }
+        }
+    }
+    private bool CanShoot(Weapons _weapon)
+        => _weapon.currentAmmo > 0      //If there is ammo
+        && !isReloading     //If we are not reloading
+        && timeSinceLastShot > 1f / (_weapon.fireRate / 60f);       //If we waited enough time to respect the firerate
+
+    private Transform GetWeaponMuzzle()
+    {
+        Transform weapon = _weaponChanger.transform.GetChild(0).transform;
+
+        foreach (Transform child in weapon)
+        {
+            if (child.tag == "Muzzle")
+                return child;
+        }
+
+        return null;
+    }
+
+    private void UpdateAmmo(Weapons _weapon)
+    {
+        _weapon.currentAmmo--;
+
+        if (_weapon.currentAmmo <= 0) HandleReload(_weapon);
+    }
+
+    private void OnShootEffect()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void CheckReload()
+    {
+        if (Input.GetKeyDown(reloadKey) && !isReloading)
+        {
+            Weapons _weapon = _weaponChanger.GetCurrentWeapon();
+            HandleReload(_weapon);
+        }
+    }
+
+    private void HandleReload(Weapons _weapon)
+    {
+        /*OnReloadEffect();*/   //Reload animation/effect
+        StartCoroutine(Reload(_weapon));
+    }
+
+    private IEnumerator Reload(Weapons _weapon)
+    {
+        isReloading = true;
+
+        yield return new WaitForSeconds(_weapon.reloadTime);
+
+        _weapon.currentAmmo = _weapon.maxAmmo;
+
+        isReloading = false;
+    }
+
+    private void OnReloadEffect()
+    {
+        throw new System.NotImplementedException();
     }
     #endregion
 }
