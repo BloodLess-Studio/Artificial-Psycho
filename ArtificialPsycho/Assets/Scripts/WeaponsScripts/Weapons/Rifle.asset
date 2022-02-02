@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Rifle
   m_EditorClassIdentifier: 
   name: Rifle
-  model: {fileID: 2028706313821389389, guid: fea1566d87ea59143812144b7c80b26a, type: 3}
+  model: {fileID: 7399313914932567509, guid: 944eb4e74aa042448ac6850f0d1082a7, type: 3}
   damage: 75
   range: 150
   fireRate: 1600
+  bulletPerShot: 1
+  bulletSpeadRange: {x: 0, y: 0}
   bulletType: 2
-  currentAmmo: 32
+  currentAmmo: 0
   maxAmmo: 32
   reloadTime: 6
-  isReloading: 0

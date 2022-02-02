@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Katana
   m_EditorClassIdentifier: 
   name: Katana
-  model: {fileID: 1356358860265546, guid: be5bb5f9aecd33d47bab7cb9bb12f9bd, type: 3}
+  model: {fileID: 5357701573491828124, guid: 4d39d1d0c6982fa49a992cce5b3a83c7, type: 3}
   damage: 0
   range: 0
   fireRate: 0

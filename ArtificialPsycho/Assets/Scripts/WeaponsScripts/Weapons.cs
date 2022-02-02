@@ -22,14 +22,16 @@ public class Weapons : ScriptableObject
     [Header("Shooting")]
     public float damage;
     public float range;
+    [Tooltip("in RPS")]
     public float fireRate;
+    public int bulletPerShot;
+    public Vector2 bulletSpeadRange;
+
 
     [Header("Reloding")]
     public BulletType bulletType;
     public int currentAmmo;
     public int maxAmmo;
+    [Tooltip("in Second")]
     public float reloadTime;
-
-    [HideInInspector] 
-    public bool isReloading = false;
 }

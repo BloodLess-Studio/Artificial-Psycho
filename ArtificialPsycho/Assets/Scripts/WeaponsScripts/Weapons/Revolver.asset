@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Revolver
   m_EditorClassIdentifier: 
   name: Desert Eagle
-  model: {fileID: 1604650248748398, guid: 1c38d01b37b46554786a8da9ffb9e896, type: 3}
+  model: {fileID: 3978742248484243535, guid: 10a245bf23ba97145a725e251e0a5ee7, type: 3}
   damage: 150
   range: 200
   fireRate: 200
+  bulletPerShot: 1
+  bulletSpeadRange: {x: 0, y: 0}
   bulletType: 1
-  currentAmmo: 6
+  currentAmmo: 4
   maxAmmo: 6
   reloadTime: 6
-  isReloading: 0

@@ -26,6 +26,7 @@ public class WeaponInputs : MonoBehaviour
 
     //Variables
     private float timeSinceLastShot;
+    private Vector3 bulletSpead;
 
     /*------ METHODS ------*/
     //Awake()
@@ -90,13 +91,8 @@ public class WeaponInputs : MonoBehaviour
             Transform muzzle = GetWeaponMuzzle();
             if (CanShoot(_weapon))
             {
-                if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, _weapon.range))
-                {
-                    Debug.Log(hitInfo.transform.name);
-
-                    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
-                    damageable?.TakeDamage(_weapon.damage);
-                }
+                if (_weapon.bulletType == BulletType.Melee) Debug.Log("Melee weapon cant hit for now. sry :)");
+                else Shoot(_weapon, muzzle);
 
                 UpdateAmmo(_weapon);
                 timeSinceLastShot = 0;
@@ -120,6 +116,29 @@ public class WeaponInputs : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void Shoot(Weapons _weapon, Transform muzzle)
+    {
+        for (int i = 0; i < _weapon.bulletPerShot; i++)
+        {
+            bulletSpead.x = Random.Range(-_weapon.bulletSpeadRange.x, _weapon.bulletSpeadRange.x);
+            bulletSpead.y = Random.Range(-_weapon.bulletSpeadRange.y, _weapon.bulletSpeadRange.y);
+
+            if (Physics.Raycast(muzzle.position, muzzle.forward + bulletSpead, out RaycastHit hitInfo, _weapon.range))
+            {
+                Debug.Log(hitInfo.transform.name);
+                Debug.DrawRay(muzzle.position, muzzle.forward + bulletSpead, Color.yellow, 3f);
+
+                IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
+                damageable?.TakeDamage(_weapon.damage);
+            }
+        }
+    }
+
+    private void MeleeHit(Weapons _weapon)
+    {
+        throw new System.NotImplementedException();
     }
 
     private void UpdateAmmo(Weapons _weapon)

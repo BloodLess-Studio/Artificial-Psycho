@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   name: Sniper
-  model: {fileID: 1328808265923766, guid: 8691a0e31f378024ca505f62cfa9de28, type: 3}
-  damage: 500
+  model: {fileID: 4359876615487738040, guid: 08fddec382c17f34ca632c93d0bea6fe, type: 3}
+  damage: 5000
   range: 500
   fireRate: 100
+  bulletPerShot: 1
+  bulletSpeadRange: {x: 0, y: 0}
   bulletType: 3
   currentAmmo: 0
   maxAmmo: 1
   reloadTime: 10
-  isReloading: 0

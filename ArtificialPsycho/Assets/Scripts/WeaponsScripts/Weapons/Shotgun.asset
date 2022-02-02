@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   name: Shotgun
-  model: {fileID: 1059664846651778, guid: b2ab14655afc51948a35b9a060996945, type: 3}
+  model: {fileID: 2761559024435366284, guid: c7f64220579a43c4a8f049b71a56ea09, type: 3}
   damage: 30
   range: 100
   fireRate: 300
+  bulletPerShot: 5
+  bulletSpeadRange: {x: 0.2, y: 0.2}
   bulletType: 4
   currentAmmo: 2
   maxAmmo: 2
   reloadTime: 8
-  isReloading: 0
