@@ -5,6 +5,9 @@ using UnityEngine;
 public class WeaponChanger : MonoBehaviour
 {
     /*------ VARIABLES ------*/
+    [Header("Layer mask")]
+    [Range(0, 31)] public int weaponLayerIndex;
+
     [Header("Weapons")]
     public ScriptableObject[] weaponsArray;
 
@@ -24,6 +27,7 @@ public class WeaponChanger : MonoBehaviour
         if (transform.childCount > 0)
             Destroy(transform.GetChild(0).gameObject);
 
-        Instantiate(_weapon.model, transform.position, transform.rotation, transform);
+        var nWeapon = (GameObject)Instantiate(_weapon.model, transform.position, transform.rotation, transform);
+        /*nWeapon.layer = weaponLayerIndex;*/
     }
 }

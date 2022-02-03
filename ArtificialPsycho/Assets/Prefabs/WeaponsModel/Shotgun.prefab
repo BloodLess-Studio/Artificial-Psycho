@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8144227618795047768}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Muzzle
   m_TagString: Muzzle
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2761559024435366291}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -72,6 +72,10 @@ PrefabInstance:
     - target: {fileID: 1059664846651778, guid: b2ab14655afc51948a35b9a060996945, type: 3}
       propertyPath: m_Name
       value: shotgun_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059664846651778, guid: b2ab14655afc51948a35b9a060996945, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4062239528963416, guid: b2ab14655afc51948a35b9a060996945, type: 3}
       propertyPath: m_RootOrder

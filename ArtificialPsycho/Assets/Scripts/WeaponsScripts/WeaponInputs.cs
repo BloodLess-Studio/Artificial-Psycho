@@ -5,8 +5,15 @@ using UnityEngine;
 public class WeaponInputs : MonoBehaviour
 {
     /*------ VARIABLES ------*/
-    [Header("Weapon Scripts")]
+    [Header("References")]
     [SerializeField] private WeaponChanger _weaponChanger;
+    [SerializeField] private GameObject weaponCamera;
+
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+
+    [Header("UI")]
+    [SerializeField] private GameObject ScopeOverlay;
 
     [Header("Bindings")]
     [SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
@@ -22,7 +29,7 @@ public class WeaponInputs : MonoBehaviour
     [Header("Weapon Info")]
     public int weaponIndex = 0;
     public bool isReloading;
-    public bool isScoping;
+    public bool isScoping = false;
 
     //Variables
     private float timeSinceLastShot;
@@ -32,6 +39,7 @@ public class WeaponInputs : MonoBehaviour
     //Awake()
     private void Awake()
     {
+        ScopeOverlay.SetActive(false);
         _weaponChanger.ChangeWeapon(weaponIndex);
     }
 
@@ -45,11 +53,12 @@ public class WeaponInputs : MonoBehaviour
         CheckSwapInput();
         CheckShoot();
         CheckReload();
-        
+        CheckScoping();
         
         Weapons _weapon = _weaponChanger.GetCurrentWeapon();
         Transform muzzle = GetWeaponMuzzle();
-        Debug.DrawRay(muzzle.position, muzzle.forward * _weapon.range, Color.green);
+        if (muzzle)
+            Debug.DrawRay(muzzle.position, muzzle.forward * _weapon.range, Color.green);
     }
 
     private void CheckSwapInput()
@@ -103,7 +112,7 @@ public class WeaponInputs : MonoBehaviour
     private bool CanShoot(Weapons _weapon)
         => _weapon.currentAmmo > 0      //If there is ammo
         && !isReloading     //If we are not reloading
-        && timeSinceLastShot > 1f / (_weapon.fireRate / 60f);       //If we waited enough time to respect the firerate
+        && timeSinceLastShot > 1f / _weapon.fireRate;       //If we waited enough time to respect the firerate
 
     private Transform GetWeaponMuzzle()
     {
@@ -128,7 +137,7 @@ public class WeaponInputs : MonoBehaviour
             if (Physics.Raycast(muzzle.position, muzzle.forward + bulletSpead, out RaycastHit hitInfo, _weapon.range))
             {
                 Debug.Log(hitInfo.transform.name);
-                Debug.DrawRay(muzzle.position, muzzle.forward + bulletSpead, Color.yellow, 3f);
+                Debug.DrawRay(muzzle.position, (muzzle.forward + bulletSpead) * _weapon.range, Color.yellow, 3f);
 
                 IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
                 damageable?.TakeDamage(_weapon.damage);
@@ -182,6 +191,32 @@ public class WeaponInputs : MonoBehaviour
     private void OnReloadEffect()
     {
         throw new System.NotImplementedException();
+    }
+
+    private void CheckScoping()
+    {
+        if (Input.GetKeyDown(scopeKey))
+        {
+            isScoping = !isScoping;
+            animator.SetBool("isScoped", isScoping);
+
+            if (isScoping) StartCoroutine(OnScopingEffect());
+            else OnUnscopingEffect();
+        }
+    }
+
+    private IEnumerator OnScopingEffect()
+    {
+        yield return new WaitForSeconds(0.15f);
+
+        ScopeOverlay.SetActive(true);
+        weaponCamera.SetActive(false);
+    }
+
+    private void OnUnscopingEffect()
+    {
+        ScopeOverlay.SetActive(false);
+        weaponCamera.SetActive(true);
     }
     #endregion
 }
