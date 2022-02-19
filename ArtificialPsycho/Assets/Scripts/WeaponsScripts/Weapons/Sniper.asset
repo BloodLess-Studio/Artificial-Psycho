@@ -20,6 +20,6 @@ MonoBehaviour:
   bulletPerShot: 1
   bulletSpeadRange: {x: 0, y: 0}
   bulletType: 3
-  currentAmmo: 0
+  currentAmmo: 1
   maxAmmo: 1
-  reloadTime: 10
+  reloadTime: 2
