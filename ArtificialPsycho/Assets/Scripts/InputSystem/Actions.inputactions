@@ -140,7 +140,7 @@
                     "id": "3f4112c8-5798-47ff-b68f-6f5c14f84434",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "InvertVector2(invertX=false),ScaleVector2(x=15,y=15)",
+                    "processors": "InvertVector2(invertX=false,invertY=false),ScaleVector2",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,
