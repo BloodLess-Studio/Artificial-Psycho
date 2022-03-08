@@ -1,0 +1,236 @@
+fileFormatVersion: 2
+guid: fa509cac325e9c2409670c3fbcc36f66
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fbx Default Material
+    second: {fileID: 2100000, guid: 6a37eaac1fb76694ca8d4ff1dbc10bc1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Bag_01
+    second: {fileID: 2100000, guid: d33e872bad0ebaf4196e0f39eb914d5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Chair
+    second: {fileID: 2100000, guid: 69a293fd42f9f7849bf20c96a7426c9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Crate
+    second: {fileID: 2100000, guid: 9c51fa985e43f1d41b74510d551de755, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Door_02
+    second: {fileID: 2100000, guid: 5d5ade7bbdce5f646b54378c44ac4c0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Fence_01
+    second: {fileID: 2100000, guid: 2b3b11ea464f27843b2b0bc6277005d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Floor_02
+    second: {fileID: 2100000, guid: 2427eb88736e0414ba515faae81cd5c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Floor_04
+    second: {fileID: 2100000, guid: 7f161175651fafb40b5e7939a723c494, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Floor_Grid
+    second: {fileID: 2100000, guid: d7c1510e52e122a4faff069c5498b399, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Lamp
+    second: {fileID: 2100000, guid: f9ee24efb5ea2f048977346fc2a70a6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Net
+    second: {fileID: 2100000, guid: d23be42687ba7e749a8a65f4879e84bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Panel
+    second: {fileID: 2100000, guid: db9ae642a10ae8444b50df203ce24352, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Pillar
+    second: {fileID: 2100000, guid: c1da32c7f3b813a4eb117bd027de6829, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Pipe_01
+    second: {fileID: 2100000, guid: e2b318124970b7d46ba91442d33f9767, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Wall_01
+    second: {fileID: 2100000, guid: 5b7515bce5b996b4c966a7aee4e336e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Wall_02
+    second: {fileID: 2100000, guid: 0adcd465fe56512429e4f291be62a0e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Wall_03
+    second: {fileID: 2100000, guid: 9ca91c5ed44e7cc40b4ca1ab5ac9f4d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Wall_05
+    second: {fileID: 2100000, guid: 95db0b0942203474b80ee6a4d953d6f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_Wall_White
+    second: {fileID: 2100000, guid: 6c8d0a98747634145bef5aea8bdee13d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Scifi_panel_02
+    second: {fileID: 2100000, guid: 8f707341fbb4abb4394c20246d55a345, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Scifi_Door_01
+    second: {fileID: 2100000, guid: c4565d72b017d8f4e81e81b7d4639f23, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Scifi_Floor_03
+    second: {fileID: 2100000, guid: 00991d6fe54591344b0e9b81d2abf038, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Scifi_Glass
+    second: {fileID: 2100000, guid: d1e740e976daea24eb39ca72bd7eb018, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Scifi_Glow
+    second: {fileID: 2100000, guid: 5aa11f2f4a14bab42b52d999dfdab1d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Scifi_Pillar_01_Color
+    second: {fileID: 2100000, guid: e6021687849cf0d42ad7bdfd50161d36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Scifi_Wall_04
+    second: {fileID: 2100000, guid: 8b7a9bc4a018b1d4196f0bad74066dd3, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.0625
+    - 0.01
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
